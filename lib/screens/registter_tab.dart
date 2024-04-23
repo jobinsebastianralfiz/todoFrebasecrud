@@ -14,17 +14,20 @@ class RegisterTab extends StatelessWidget {
 
 
       body: DefaultTabController(
-        length: 2,
+        length: 4,
         child: Scaffold(
           appBar: AppBar(
 
             bottom: const TabBar(
+              isScrollable: true,
               padding: EdgeInsets.all(20),
               labelPadding: EdgeInsets.all(10),
               indicatorColor: Colors.orange,
               labelStyle: TextStyle(color: Colors.orange),
               tabs: [
               Text("User Registration"),
+                Text("Teacher Registration"),
+                Text("Teacher Registration"),
                 Text("Teacher Registration"),
 
               ],
@@ -34,6 +37,8 @@ class RegisterTab extends StatelessWidget {
           body: const TabBarView(
             children: [
              RegisterPage(),
+              TeacherRegister(),
+              TeacherRegister(),
               TeacherRegister()
 
             ],

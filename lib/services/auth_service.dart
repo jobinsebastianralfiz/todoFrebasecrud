@@ -55,7 +55,25 @@ class AuthService {
       _pref.setString('role', teacherSnap['role']);
 
 
+    }else if(teacherSnap['role']=='admin'){
+
+
+      // final teacherSnap = await FirebaseFirestore.instance
+      //     .collection('user')
+      //     .doc(userData!.user!.uid)
+      //     .get();
+      SharedPreferences _pref = await SharedPreferences.getInstance();
+      _pref.setString('token', token!);
+      _pref.setString('name', "admin");
+      _pref.setString('email', email.toString());
+      _pref.setString('phone', "9895663498");
+
+
+      _pref.setString('role', teacherSnap['role']);
+
+
     }
+
 
 
 

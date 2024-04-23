@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                           'modhome',
                           (route) => false,
                         );
-                      } else {
+                      }else if (userData['role'] == "admin")  {
                         Navigator.pushNamedAndRemoveUntil(
                           context,
                           'adminhome',

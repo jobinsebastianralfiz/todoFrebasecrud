@@ -6,7 +6,9 @@ import 'package:tododemoapp/screens/admin_home.dart';
 import 'package:tododemoapp/screens/aoderator_home.dart';
 import 'package:tododemoapp/screens/login_page.dart';
 import 'package:tododemoapp/screens/register_page.dart';
+import 'package:tododemoapp/screens/registter_tab.dart';
 import 'package:tododemoapp/screens/splash_page.dart';
+import 'package:tododemoapp/screens/teacher_registeration.dart';
 import 'package:tododemoapp/screens/user_home_page.dart';
 
 void main() async {
@@ -31,12 +33,13 @@ class MyApp extends StatelessWidget {
 
         '/':(context)=>SplashPage(),
         'login':(context)=>LoginPage(),
-        'register':(context)=>RegisterPage(),
+        'register':(context)=>RegisterTab(),
         'userhome':(context)=>UserHome(),
         'modhome':(context)=>ModeratorHome(),
         'adminhome':(context)=>AdminHome(),
 
-        'addtodo':(context)=>AddTodo()
+        'addtodo':(context)=>AddTodo(),
+        'teacherregister':(context)=>TeacherRegister()
       },
     debugShowCheckedModeBanner: false,
 

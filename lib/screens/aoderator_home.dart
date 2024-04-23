@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tododemoapp/services/auth_service.dart';
 import 'package:tododemoapp/services/user_services.dart';
 
 
@@ -19,7 +20,7 @@ class _ModeratorHomeState extends State<ModeratorHome> {
         actions: [
           IconButton(
             onPressed: () {
-              UserService().logout().then((value) =>
+             AuthService().logout().then((value) =>
                   Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false)
 
               );

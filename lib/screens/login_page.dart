@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tododemoapp/common/form_validator.dart';
+import 'package:tododemoapp/services/auth_service.dart';
 import 'package:tododemoapp/services/user_services.dart';
 
 class LoginPage extends StatefulWidget {
@@ -66,9 +67,9 @@ class _LoginPageState extends State<LoginPage> {
                   // do thelogic
 
                   if (_loginKey.currentState!.validate()) {
-                    UserService _userService = UserService();
+                  AuthService _authService = AuthService();
 
-                    final userData = await _userService.loginUser(
+                    final userData = await _authService.loginUser(
                         _emailController.text, _passwordController.text);
 
                     if (userData != null) {
@@ -78,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                           'userhome',
                           (route) => false,
                         );
-                      } else if (userData['role'] == "moderator") {
+                      } else if (userData['role'] == "teacher") {
                         Navigator.pushNamedAndRemoveUntil(
                           context,
                           'modhome',
@@ -114,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Create Account"),
+                  Text("Register"),
                   IconButton(
                       onPressed: () {
                         Navigator.pushNamed(context, 'register');
@@ -122,6 +123,21 @@ class _LoginPageState extends State<LoginPage> {
                       icon: Icon(Icons.arrow_forward))
                 ],
               )
+,
+              SizedBox(
+                height: 15,
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Text("Register as user"),
+              //     IconButton(
+              //         onPressed: () {
+              //           Navigator.pushNamed(context, 'register');
+              //         },
+              //         icon: Icon(Icons.arrow_forward))
+              //   ],
+              // )
             ],
           ),
         ),

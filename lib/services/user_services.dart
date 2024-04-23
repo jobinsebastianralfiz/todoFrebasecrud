@@ -15,9 +15,26 @@ class UserService {
           .createUserWithEmailAndPassword(
               email: user.email.toString(), password: user.password.toString());
 
-      user.uid = userResponse.user!.uid;
-      print(user.uid);
-      print(user.name);
+      final usermodel=UserModel(
+          role: user.role,
+
+          email:user.email,
+          uid: userResponse.user!.uid,
+          password:user.password,
+          name: user.name, phone: user.phone,
+
+        );
+
+
+      FirebaseFirestore.instance
+          .collection('login')
+          .doc(userResponse.user!.uid)
+          .set({
+
+        'uid':usermodel.uid,
+        'role':usermodel.role,
+        'email':usermodel.email
+      });
 
       FirebaseFirestore.instance
           .collection('user')
@@ -34,52 +51,5 @@ class UserService {
     }
   }
 
-  Future<DocumentSnapshot> loginUser(String? email, String password) async {
-    UserCredential userData = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-            email: email.toString(), password: password.toString());
 
-    final userSnap = await FirebaseFirestore.instance
-        .collection('user')
-        .doc(userData!.user!.uid)
-        .get();
-    var token = await userData.user!.getIdToken();
-
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    _pref.setString('token', token!);
-    _pref.setString('name', userSnap['name']);
-    _pref.setString('email', userSnap['email']);
-    _pref.setString('phone', userSnap['phone']);
-
-    _pref.setString('role', userSnap['role']);
-
-
-
-    return userSnap;
-  }
-
-  Future<void>logout()async{
-
-    SharedPreferences _pref=await SharedPreferences.getInstance();
-    _pref.clear();
-
-    await FirebaseAuth.instance.signOut();
-
-
-  }
-
-
-
-  Future<bool> isLoggedin() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-
-    String? _token = await pref.getString('token');
-
-    // checking if there a token
-    if (_token == null) {
-      return false;
-    } else {
-      return true;
-    }
-  }
 }

@@ -50,6 +50,7 @@ class UserModel {
   // Convert UserModel object to Map
   Map<String, dynamic> toMap() {
     return {
+      'uid':uid,
       'name': name,
       'email': email,
       'password': password,

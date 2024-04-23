@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tododemoapp/models/todo_model.dart';
+import 'package:tododemoapp/services/auth_service.dart';
 import 'package:tododemoapp/services/user_services.dart';
 
 import 'package:tododemoapp/services/todo_service.dart'; // Import your TodoService
@@ -56,7 +57,7 @@ class _UserHomeState extends State<UserHome> {
         actions: [
           IconButton(
             onPressed: () {
-              UserService().logout().then((value) =>
+              AuthService().logout().then((value) =>
                   Navigator.pushNamedAndRemoveUntil(
                       context, 'login', (route) => false));
             },
